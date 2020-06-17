@@ -40,6 +40,21 @@ CGI RESCUE様のウェブサイトからダウンロードしてください。
 
 * https://www.rescue.ne.jp/cgi/minibbs1/
 
+# しくみ
+
+* AWS::Lambda
+  * Perlランタイムを立ち上げ
+  * https://github.com/shogo82148/p5-aws-lambda
+* handler.pl
+  * AWS::Lambda::PSGIで関数をPlackアプリに変換
+* App.pm
+  * Plack::App::WrapCGIを改変してPerl経由で立ち上げる
+  * パーミッション設定できればPlack::App::WrapCGIでそのままいけるかも
+* minibbs.cgi
+  * MiniBBS ( https://rescue.ne.jp/cgi/minibbs1/ )
+  * EFS上にデータファイル設置
+
+
 # LICENSE
 
 Plackのコードを含んでいるためGPLです。

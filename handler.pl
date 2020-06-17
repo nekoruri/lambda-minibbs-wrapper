@@ -10,5 +10,6 @@ my $app = App->new(script => "$ENV{'LAMBDA_TASK_ROOT'}/minibbs.cgi", execute => 
 my $func = AWS::Lambda::PSGI->wrap($app);
 
 sub handle {
+    $ENV{'TZ'} = "JST-9";
     return $func->(@_);
 }
