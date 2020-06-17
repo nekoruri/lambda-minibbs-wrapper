@@ -38,6 +38,8 @@ MiniBBS本体(minibbs.cgi)とjcode.plは、
 CGI RESCUE様のウェブサイトからダウンロードしてください。
 おそらく $reload $modoru $tmp_dir を設定すれば最低限動くはずです。
 
+* https://www.rescue.ne.jp/cgi/minibbs1/
+
 # LICENSE
 
 Plackのコードを含んでいるためGPLです。
