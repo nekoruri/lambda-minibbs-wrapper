@@ -1,3 +1,4 @@
 #!/bin/sh
 
+chmod +x minibbs.cgi
 zip -9 -r ../minibbs.zip handler.pl App.pm minibbs.cgi jcode.pl
