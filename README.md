@@ -4,6 +4,9 @@
 
 CGI RESCUE様の簡易ＢＢＳ（MiniBBS）をAWS Lambda上で動かすためのハンドラ関数です。
 
+同じ感じで、Perl時代のCGI資産をそのままAWS Lambda+EFSの環境で動かせると思うので、
+サーバーレスへの移行導入の参考にしてください。
+
 # HOWTO
 
 ## Perlランタイム
