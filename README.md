@@ -14,7 +14,7 @@ perl-5-30-runtimeをレイヤーに食わせてください。
 
 ## Perlモジュール
 
-CGI::Emulate::PSGIが必要なので、
+CGI::Emulate::PSGIとCGI::Compileが必要なので、
 以下のように作ったZIPをレイヤーに食わせてください。
 
 ```
@@ -22,7 +22,7 @@ docker run --rm \
     -v $(pwd):/var/task \
     -v $(pwd)/opt/lib/perl5/site_perl:/opt/lib/perl5/site_perl \
     shogo82148/p5-aws-lambda:build-5.30 \
-    cpanm --notest --no-man-pages CGI::Emulate::PSGI
+    cpanm --notest --no-man-pages CGI::Emulate::PSGI CGI::Compile
 cd opt
 zip -9 -r ../CGI-Emulate-PSGI.zip .
 ```
@@ -47,9 +47,10 @@ CGI RESCUE様のウェブサイトからダウンロードしてください。
   * https://github.com/shogo82148/p5-aws-lambda
 * handler.pl
   * AWS::Lambda::PSGIで関数をPlackアプリに変換
-* App.pm
-  * Plack::App::WrapCGIを改変してPerl経由で立ち上げる
-  * パーミッション設定できればPlack::App::WrapCGIでそのままいけるかも
+* Plack::App::WrapCGI
+  * PlackからCGIにインターフェース変換
+  * 内部でCGI::Emulate::PSGIを使用
+  * CGI::CompileはLambda環境で動かないため(読み込まれるので導入は必要)、forkして実行
 * minibbs.cgi
   * MiniBBS ( https://rescue.ne.jp/cgi/minibbs1/ )
   * EFS上にデータファイル設置
