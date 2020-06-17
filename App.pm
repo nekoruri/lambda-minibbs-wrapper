@@ -1,5 +1,7 @@
 package App;
 
+# See: https://metacpan.org/pod/Plack::App::WrapCGI
+
 use strict;
 use warnings;
 use parent qw(Plack::Component);
