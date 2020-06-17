@@ -60,5 +60,7 @@ CGI RESCUE様のウェブサイトからダウンロードしてください。
 
 # LICENSE
 
-Plackのコードを含んでいるためGPLです。
+MIT license (c) 2020 NAKAYAMA Masahiro <aki@nekoruri.jp>
+
+当初はGPLでしたがPlackのコードを含まなくなったので変更しました。
 
