@@ -36,7 +36,9 @@ zip -9 -r ../CGI-Emulate-PSGI.zip .
 
 MiniBBS本体(minibbs.cgi)とjcode.plは、
 CGI RESCUE様のウェブサイトからダウンロードしてください。
-おそらく $reload $modoru $tmp_dir を設定すれば最低限動くはずです。
+
+* 1行目のshebangを/usr/bin/perlに変更
+* $reload $modoru $tmp_dir を設定
 
 * https://www.rescue.ne.jp/cgi/minibbs1/
 
