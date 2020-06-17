@@ -1,0 +1,44 @@
+# MiniBBSをAWS Lambdaで動かすハンドラ関数
+
+# DESCRIPTION
+
+CGI RESCUE様の簡易ＢＢＳ（MiniBBS）をAWS Lambda上で動かすためのハンドラ関数です。
+
+# HOWTO
+
+## Perlランタイム
+
+perl-5-30-runtimeをレイヤーに食わせてください。
+
+* https://github.com/shogo82148/p5-aws-lambda
+
+## Perlモジュール
+
+CGI::Emulate::PSGIが必要なので、
+以下のように作ったZIPをレイヤーに食わせてください。
+
+```
+docker run --rm \
+    -v $(pwd):/var/task \
+    -v $(pwd)/opt/lib/perl5/site_perl:/opt/lib/perl5/site_perl \
+    shogo82148/p5-aws-lambda:build-5.30 \
+    cpanm --notest --no-man-pages CGI::Emulate::PSGI
+cd opt
+zip -9 -r ../CGI-Emulate-PSGI.zip .
+```
+
+## データ保存先
+
+データはEFS上で共有することを想定しています。
+適当に設定してください。
+
+## スクリプト本体
+
+MiniBBS本体(minibbs.cgi)とjcode.plは、
+CGI RESCUE様のウェブサイトからダウンロードしてください。
+おそらく $reload $modoru $tmp_dir を設定すれば最低限動くはずです。
+
+# LICENSE
+
+Plackのコードを含んでいるためGPLです。
+
