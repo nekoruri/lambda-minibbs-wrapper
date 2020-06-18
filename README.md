@@ -7,6 +7,8 @@ CGI RESCUE様の簡易ＢＢＳ（MiniBBS）をAWS Lambda上で動かすため�
 同じ感じで、Perl時代のCGI資産をそのままAWS Lambda+EFSの環境で動かせると思うので、
 サーバーレスへの移行導入の参考にしてください。
 
+[en] This is a handler function that runs CGI scripts on AWS Lambda.
+
 # HOWTO
 
 ## Perlランタイム
@@ -40,10 +42,12 @@ zip -9 -r ../CGI-Emulate-PSGI.zip .
 MiniBBS本体(minibbs.cgi)とjcode.plは、
 CGI RESCUE様のウェブサイトからダウンロードしてください。
 
+* https://www.rescue.ne.jp/cgi/minibbs1/
+
 * 1行目のshebangを/usr/bin/perlに変更
 * $reload $modoru $tmp_dir を設定
 
-* https://www.rescue.ne.jp/cgi/minibbs1/
+デプロイ用ZIPの作成をする build_zip を同梱しています。
 
 # しくみ
 
@@ -60,6 +64,13 @@ CGI RESCUE様のウェブサイトからダウンロードしてください。
   * MiniBBS ( https://rescue.ne.jp/cgi/minibbs1/ )
   * EFS上にデータファイル設置
 
+# 他のCGIスクリプトで使う
+
+CGIスクリプトがPerlで書かれている必要は無いので、
+handler.pl内の minibbs.cgi を変更すればどの言語でも動作します。
+
+ただし、AWS Lambdaの実行環境に言語環境やライブラリが無いものは一緒にデプロイするか、
+EFS上にあらかじめ設置する必要があります。
 
 # LICENSE
 
